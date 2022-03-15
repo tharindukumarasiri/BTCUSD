@@ -43,7 +43,7 @@ const TradeBook = () => {
     );
   };
 
-  if (data.length === 1) return <Text>Loading</Text>;
+  if (data.length === 1) return <Text style={TradeBookRowStyles.text}>Loading</Text>;
 
   return (
     <SafeAreaView>

@@ -28,7 +28,7 @@ const Trades = () => {
   };
 
   if (data.length === 1) {
-    return <Text>Loading</Text>;
+    return <Text style={TradesRowStyle.text}>Loading</Text>;
   } else {
     let sortedData = data.slice().sort(function (a: number[], b: number[]) {
       return b[1] - a[1];
