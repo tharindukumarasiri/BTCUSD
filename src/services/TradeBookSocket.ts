@@ -1,6 +1,8 @@
 import { TRADE_BOOK_REQ, TRADE_BOOK_URL } from '../utils/enum';
 import { bookCreated, bookUpdated } from '../redux/tradeBook';
 import store from '../redux/store';
+import Toast from 'react-native-simple-toast';
+
 const msgReq = JSON.stringify(TRADE_BOOK_REQ);
 let w: any;
 
@@ -10,12 +12,11 @@ const TradeBookSocket = () => {
   const connect = () => {
     try {
       w.onopen = () => {
-        console.log('on open');
+        Toast.showWithGravity('Websocket Connected', Toast.LONG, Toast.TOP);
         w.send(msgReq);
       };
       w.onclose = (e: any) => {
-        console.log('on Close');
-        console.log(e);
+        Toast.showWithGravity('Websocket Disconnected', Toast.LONG, Toast.TOP);
         w = undefined;
       };
       w.onerror = (e: any) => {
@@ -42,6 +43,7 @@ const TradeBookSocket = () => {
   const disconnect = () => {
     try {
       console.log("Disconnected");
+      store.dispatch(bookCreated([[]]))
       w.close();
       w = undefined;
     } catch (e) {

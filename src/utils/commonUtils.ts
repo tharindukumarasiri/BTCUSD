@@ -8,6 +8,14 @@ export const filterSort = (data: number[][]) => {
     offers.sort(function (a: number[], b: number[]) {
         return a[0] - b[0];
     });
-    
+
     return { bids, offers };
+}
+
+export const roundOff = (value: number, decimalPlaces = 1) => {
+    if(decimalPlaces === 1 ){
+        return Math.round(Math.abs(value) * 10)/10;
+    } else {
+        return Math.round(Math.abs(value) * 1000)/1000;
+    }
 }

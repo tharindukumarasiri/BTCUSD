@@ -2,13 +2,12 @@ import React, {useEffect} from 'react';
 import {SafeAreaView, FlatList, ScrollView, View, Text} from 'react-native';
 import TradeBookSocket from '../services/TradeBookSocket';
 import {useSelector} from 'react-redux';
-import {State} from '../redux/tradeBook';
-import TradeBookRow from '../components/TradeBookRow';
+import {TradeBookRow, TableColumnTitle} from '../components';
 import TradeBookRowStyles from '../styles/TradeBookRowStyles';
 import {filterSort} from '../utils/commonUtils';
 
 const TradeBook = () => {
-  const {data} = useSelector((state: State) => state.TradeBook);
+  const {data} = useSelector((state: any) => state.TradeBook);
 
   useEffect(() => {
     TradeBookSocket().connect();
@@ -33,14 +32,6 @@ const TradeBook = () => {
     }
   };
 
-  const getTitleText = (text: String) => {
-    return (
-      <Text style={{fontWeight: 'bold', marginTop: 5, marginBottom: 5}}>
-        {text}
-      </Text>
-    );
-  };
-
   const getList = (data: number[][]) => {
     return (
       <FlatList
@@ -58,12 +49,12 @@ const TradeBook = () => {
     <SafeAreaView>
       <View style={{flexDirection: 'row'}}>
         <View style={TradeBookRowStyles.row}>
-          {getTitleText('Total')}
-          {getTitleText('Price')}
+          {TableColumnTitle('Total')}
+          {TableColumnTitle('Price')}
         </View>
         <View style={TradeBookRowStyles.row}>
-          {getTitleText('Price')}
-          {getTitleText('Total')}
+          {TableColumnTitle('Price')}
+          {TableColumnTitle('Total')}
         </View>
       </View>
       <ScrollView nestedScrollEnabled={true} style={{width: '100%'}}>

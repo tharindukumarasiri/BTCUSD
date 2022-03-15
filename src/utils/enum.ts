@@ -12,6 +12,12 @@ export const TRADE_BOOK_REQ = {
   symbol: 'tBTCUSD',
 };
 
+export const TRADES_REQ = { 
+  event: 'subscribe', 
+  channel: 'trades', 
+  symbol: 'tBTCUSD' 
+};
+
 export const SIDE ={
   bid: 'BID',
   offer: 'OFFER'
