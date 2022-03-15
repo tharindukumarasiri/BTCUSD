@@ -41,7 +41,7 @@ const Trades = () => {
           <View style={TradesRowStyle.priceContainer}>
             {TableColumnTitle('Price')}
           </View>
-          {TableColumnTitle('Price', TradesRowStyle.amountText)}
+          {TableColumnTitle('Amount', TradesRowStyle.amountText)}
         </View>
         <FlatList
           data={sortedData}
